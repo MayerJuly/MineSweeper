@@ -1,0 +1,11 @@
+.smileFace {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 26px;
+    height: 26px;
+    background: url(/public/img/minesweeper.png) 0 -24px;
+}
+.smileFace:active {
+    background-position: -27px -24px !important;
+}

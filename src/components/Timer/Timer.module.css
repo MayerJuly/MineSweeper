@@ -1,0 +1,10 @@
+.timerWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.number {
+    width: 13px;
+    height: 23px;
+    background: url(/public/img/minesweeper.png);
+}
