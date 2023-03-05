@@ -23,6 +23,8 @@ const FieldCell = ({
                        setFace,
                    }) => {
 
+    // Handle to Cell's left click
+
     const handleCellClick = () => {
 
 
@@ -37,14 +39,14 @@ const FieldCell = ({
                 }
             }
             setField(newField)
-            clearAction(mask, field, x, y);
+            clearAction(mask, field, x, y, flagsAmount, setFlagsAmount);
             setIsGenerate(true);
         }
         if (win || loose || !isGenerate || mask[y * SIZE + x] === Mask.Flag || mask[y * SIZE + x] === Mask.Question || mask[y * SIZE + x] === Mask.Transparent) return;
 
         if (mask[y * SIZE + x] === Mask.Transparent) return;
 
-        clearAction(mask, field, x, y);
+        clearAction(mask, field, x, y, flagsAmount, setFlagsAmount);
 
 
         if (field[y * SIZE + x] === Mine) {
@@ -62,6 +64,7 @@ const FieldCell = ({
 
 
     }
+    // Handle to Cell's Right click
 
     const handleContextMenu = (e) => {
 
@@ -85,7 +88,7 @@ const FieldCell = ({
 
     }
 
-
+    // Handle to Cell's Mouse Down
     const handleMouseDown = (e) => {
         if (e.button === 0
             && mask[y * SIZE + x] === Mask.Fill
@@ -96,6 +99,7 @@ const FieldCell = ({
 
         }
     }
+    // Handle to Cell's Mouse Up or Out
     const handleMouseUp = (e) => {
         if (e.button === 0
             && mask[y * SIZE + x] === Mask.Pressed
@@ -106,6 +110,7 @@ const FieldCell = ({
 
         }
     }
+    // Transforming Mask states to classes
     useEffect(() => {
         classesArray =
             mask[y * SIZE + x] === Mask.Transparent

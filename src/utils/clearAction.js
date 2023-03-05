@@ -1,12 +1,15 @@
 import {SIZE} from "../constants";
 import {Mask} from "../types";
 
-export const clearAction = (mask, field, x, y) => {
+export const clearAction = (mask, field, x, y, flagsAmount, setFlagsAmount) => {
 
     const clearing = [];
 
     function clear(x, y) {
         if (x >= 0 && x < SIZE && y >= 0 && y < SIZE) {
+            if(mask[y* SIZE + x] === Mask.Flag) {
+                setFlagsAmount(flagsAmount + 1)
+            }
             if (mask[y * SIZE + x] === Mask.Transparent) return;
             clearing.push([x, y])
         }
@@ -17,6 +20,7 @@ export const clearAction = (mask, field, x, y) => {
 
     while (clearing.length) {
         const [x, y] = clearing.pop();
+
         mask[y * SIZE + x] = Mask.Transparent
 
         if (field[y * SIZE + x] === 0) {
